@@ -51,9 +51,18 @@ describe('ETANT DONNE une chaîne ET un utilisateur parlant français ' +
 describe('ETANT DONNE une chaîne QUAND on l\'analyse ALORS \'Au revoir\' est envoyé après la réponse',
     () => {
         test.each(["radar", "test"])
-        ('Cas %s', (chaîne) => {
-            let résultat = AnalyseurPalindromeBuilder.Default().Analyser(chaîne)
+        ('Cas FR %s', (chaîne) => {
+            let langue = new LangueFrançaise()
+            let résultat = new AnalyseurPalindromeBuilder().AyantPourLangue(langue).Build().Analyser(chaîne)
             let lignes = résultat.split('\n').reverse()
-            expect(lignes[0]).toBe("Au revoir")
+            expect(lignes[0]).toBe(LangueFrançaise.AU_REVOIR)
+        })
+
+        test.each(["radar", "test"])
+        ('Cas EN %s', (chaîne) => {
+            let langue = new LangueAnglaise()
+            let résultat = new AnalyseurPalindromeBuilder().AyantPourLangue(langue).Build().Analyser(chaîne)
+            let lignes = résultat.split('\n').reverse()
+            expect(lignes[0]).toBe("Goodbye")
         })
     });

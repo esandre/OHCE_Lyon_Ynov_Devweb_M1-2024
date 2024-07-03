@@ -12,6 +12,6 @@ export class AnalyseurPalindrome {
         let miroir = chaîne.split('').reverse().join('')
         return this._langue.Saluer() + "\n" + (chaîne == miroir
             ?  miroir + '\n' + 'Bien dit !'
-            : miroir) + '\n' + "Au revoir"
+            : miroir) + '\n' + this._langue.Acquitter()
     }
 }
