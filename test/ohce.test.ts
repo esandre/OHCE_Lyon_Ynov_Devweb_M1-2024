@@ -21,30 +21,23 @@ describe('ETANT DONNE un palindrome QUAND on l\'analyse ALORS il ressort suivi d
         })
     });
 
-describe('ETANT DONNE une chaîne ET un utilisateur parlant français ' +
+describe('ETANT DONNE une chaîne ET un utilisateur parlant <langue> ' +
     'QUAND on analyse la chaîne ' +
     'ALORS \'Bonjour\' est envoyé avant toute réponse',
     () => {
-        test.each(["radar", "test"])
-        ('Cas FR %s', (chaîne) => {
-            let langue = new LangueFrançaise()
+        test.each([
+                    ["radar", LangueFrançaise, "Bonjour"],
+                    ["test", LangueFrançaise, "Bonjour"],
+                    ["radar", LangueAnglaise, "Hello"],
+                    ["test", LangueAnglaise, "Hello"],
+                ])
+        ('Cas %s %s => %s', (chaîne, langue, attendu) => {
             let résultat = new AnalyseurPalindromeBuilder()
-                .AyantPourLangue(langue)
+                .AyantPourLangue(new langue())
                 .Build()
                 .Analyser(chaîne)
             let lignes = résultat.split('\n')
-            expect(lignes[0]).toBe("Bonjour")
-        })
-
-        test.each(["radar", "test"])
-        ('Cas EN %s', (chaîne) => {
-            let langue = new LangueAnglaise()
-            let résultat = new AnalyseurPalindromeBuilder()
-                .AyantPourLangue(langue)
-                .Build()
-                .Analyser(chaîne)
-            let lignes = résultat.split('\n')
-            expect(lignes[0]).toBe("Hello")
+            expect(lignes[0]).toBe(attendu)
         })
     });
 
