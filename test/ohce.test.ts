@@ -22,9 +22,27 @@ describe("ETANT DONNE une chaine QUAND on l'analyse ALORS on obtient son miroir 
         expect(resultat).toContain("Bonjour");
     });
 
-    test('cas bonjour est bien avant le miroir', () => {
+    test("cas bonjour est bien avant le miroir", () => {
         const resultat = AnalyseurPalindrome.Analyser("test");
+        const splittedResult = resultat.split("\n");
 
-        expect(resultat).toContain("Bonjour\ntset");
-    })
+        expect(splittedResult[0]).toBe("Bonjour");
+    });
+});
+
+describe("ETANT DONNE une chaine QUAND on l'analyse ALORS on obtient son miroir poursuivi de Au revoir", () => {
+    test("Cas au revoir", () => {
+        const resultat = AnalyseurPalindrome.Analyser("radar");
+
+        console.log(resultat);
+
+        expect(resultat).toContain("Au revoir");
+    });
+
+    test("cas au revoir est apres avant le miroir", () => {
+        const resultat = AnalyseurPalindrome.Analyser("test");
+        const splittedResult = resultat.split("\n");
+
+        expect(splittedResult[2]).toBe("Au revoir");
+    });
 });
