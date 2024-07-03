@@ -1,8 +1,16 @@
-export class AnalyseurPalindrome {
+import {Langue} from "./Langue.interface";
 
-    static Analyser(chaîne: string) : string {
+export class AnalyseurPalindrome {
+    private _langue: Langue;
+
+    constructor(langue: Langue) {
+        this._langue = langue;
+    }
+
+
+    public Analyser(chaîne: string) : string {
         let miroir = chaîne.split('').reverse().join('')
-        return "Bonjour" + "\n" + (chaîne == miroir
+        return this._langue.Saluer() + "\n" + (chaîne == miroir
             ?  miroir + '\n' + 'Bien dit !'
             : miroir) + '\n' + "Au revoir"
     }
