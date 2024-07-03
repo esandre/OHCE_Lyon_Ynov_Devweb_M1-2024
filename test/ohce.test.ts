@@ -16,7 +16,7 @@ describe("ETANT DONNE un palindrome QUAND on l'analyse ALORS il ressort suivi de
 });
 
 describe("ETANT DONNE une chaine QUAND on l'analyse ALORS on obtient son miroir précédé de bonjour", () => {
-    test("Cas bonjour", () => {
+    test("Cas return bonjour", () => {
         const resultat = AnalyseurPalindrome.Analyser("test");
 
         expect(resultat).toContain("Bonjour");
